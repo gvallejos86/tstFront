@@ -2,8 +2,8 @@ module.exports = class ItemCol {
   constructor(author,data){
     this.items = {};
     this.items['author'] = author;
-    this.items['categories'] = this.getCategories(data.filters[0].values[0].path_from_root);
-    this.items['items'] = this.getItems(data.results);
+    this.items['categories'] = data.filters.length > 0 ? this.getCategories(data.filters[0].values[0].path_from_root) : null;
+    this.items['items'] = data.results.length > 0 ? this.getItems(data.results) : null;
     this.getItemsFormat();
   }
 

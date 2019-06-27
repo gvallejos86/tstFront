@@ -1,0 +1,181 @@
+$headerColor: #fff159;
+$backgroundBody: #e9ecef;
+$backgroundItems: #fff;
+$fontMain: 'Roboto';
+$fontItemColor: #333;
+$colorBreadcrumb: #999;
+$freeShippingColor: #00a650;
+
+html,body {
+  background-color: $backgroundBody;
+  font-family: $fontMain;
+}
+
+/* Estilos buscador */
+
+.nav-logo {
+    background-image: url(https://http2.mlstatic.com/ui/navigation/4.4.2/mercadolibre/logo__small.png);
+    background-repeat: no-repeat;
+    height: 28px;
+    overflow: hidden;
+    text-indent: -999px;
+    width: 39px;
+    outline: 0;
+}
+
+.nav-header {
+    background-color: $headerColor;
+    border: 0;
+}
+
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-    input:focus {
+    border-color: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    outline: none !important;
+}
+
+.form-inline {
+  flex: auto;
+}
+
+.form-control:focus {
+  outline: none !important;
+  border-color: #ced4da !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+.navbar {
+  input {
+    border-right: none;
+  }
+  .input-group-text {
+    border-left: none;
+    border-top-right-radius: 0.25rem !important;
+    border-bottom-right-radius: 0.25rem !important;
+    cursor: pointer;
+  }
+}
+
+/* Estilos resultados de busqueda */
+
+.bg-items {
+  background-color: $backgroundItems;
+}
+
+.item-container {
+  border-bottom: 1px solid $backgroundBody;
+}
+
+.items-img-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  height: 160px;
+  width: 160px;
+  border: 1px solid $backgroundBody;
+  margin: 10px 5px;
+}
+
+.item-title {
+  font-size: 20px;
+  font-weight: 300;
+  color: $fontItemColor;
+}
+
+.item-price {
+  font-size: 24px;
+  font-weight: 400;
+  color: $fontItemColor;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    color: $colorBreadcrumb;
+    content: ">";
+}
+
+.breadcrumb-item.active {
+    color: $colorBreadcrumb;
+}
+
+.breadcrumb-item {
+    color: $colorBreadcrumb;
+}
+
+a {
+  color: $fontItemColor;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+.flex-auto {
+  flex: auto;
+}
+
+/* Estilos detalle de item */
+
+.img-product {
+  max-width: 100%;
+}
+
+.product-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: $fontItemColor;
+}
+
+.product-price {
+  font-size: 26px;
+  font-weight: 300;
+  color: $fontItemColor;
+}
+
+.amount-decimals {
+  font-size: 14px;
+  top: 0;
+  position: relative;
+  vertical-align: text-top;
+  left: 3px;
+}
+
+.free-shipping-product {
+  color: $freeShippingColor;
+}
+
+.description-title {
+  font-weight: 400;
+  font-size: 24px;
+}
+
+/* Media queries*/
+
+@media (min-width: 1024px) {
+  .nav-logo {
+      background-image: url(https://http2.mlstatic.com/ui/navigation/4.4.2/mercadolibre/logo__large_plus.png);
+      height: 34px;
+      top: 11px;
+      width: 134px;
+  }
+}
+
+@media (min-width: 992px) {
+  .product-title {
+    font-size: 26px;
+  }
+
+  .product-price {
+    font-size: 44px;
+  }
+
+  .amount-decimals {
+    font-size: 20px;
+  }
+}

@@ -2,7 +2,8 @@ module.exports = class Item {
   constructor(author,data){
     this.item = {};
     this.item['author'] = author;
-    this.item['item'] = this.getItem(data);
+    this.item['item'] = data.item ? this.getItem(data) : null;
+    this.item['category_id'] = data.item ? data.item.category_id : null;
     this.getItemFormat();
   }
 
