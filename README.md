@@ -7,5 +7,5 @@
 * `npm start`
 
 *Cliente:*
-1. `cd client-meli-react`
-2. `npm start`
+* `cd client-meli-react`
+* `npm start`
