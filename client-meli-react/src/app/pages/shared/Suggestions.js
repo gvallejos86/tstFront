@@ -8,7 +8,7 @@ class Suggestions extends Component {
 			<div className="position-absolute w-100 suggestions" style={{display:this.props.words.suggestions?'block':'none'}}>
         { this.props.words.suggestions ?
           this.props.words.suggestions.map((word, index)=>{
-            return <div key={index} className="p-2 d-flex flex-row"><i className="fas fa-search text-secondary d-flex align-items-center"></i><p className="valueSuggestion">{word}</p></div>
+            return <div key={index} className="p-2 d-flex flex-row"><i className="pl-1 fas fa-search text-secondary d-flex align-items-center"></i><p className="valueSuggestion">{word}</p></div>
           })
           : null
         }
