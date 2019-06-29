@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import NoResult from '../shared/NoResult';
 import Loading from '../shared/Loading';
 
+//SEO
+import { Helmet } from 'react-helmet';
 
 class Product extends Component {
 
@@ -19,7 +21,6 @@ class Product extends Component {
   componentDidMount() {
     //cargar producto
     this.getProduct();
-
   }
 
   // obtengo items en base al valor de busqueda
@@ -44,10 +45,15 @@ class Product extends Component {
               },
             })
             .then(responseCat => { return responseCat.json()})
-            .then(responseDataCat => {
-              this.setState({ categories : responseDataCat });
-            });
+            .then(responseDataCat => { this.setState({ categories : responseDataCat }) });
          });
+    }
+  }
+
+  //volver a la pagina anterior si previamente hubo navegacion
+  goBack = () => {
+    if (this.props.location.state && this.props.location.state.from){
+      this.props.history.goBack();
     }
   }
 
@@ -55,6 +61,9 @@ class Product extends Component {
   template() {
     return (
       <div className="container mb-5">
+        <Helmet>
+          <meta name="description" content={this.state.item.item.title} />
+        </Helmet>
         <div className="row">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb mb-0">
@@ -71,6 +80,12 @@ class Product extends Component {
                   : null
               }
             </ol>
+            {
+              this.props.location.state && this.props.location.state.from
+                ?
+                  <div><button type="button" className="btn btn-link" onClick={this.goBack}>Volver</button></div>
+                : null
+            }
           </nav>
         </div>
         <article className="container-fluid bg-items rounded">
@@ -78,9 +93,9 @@ class Product extends Component {
             this.state.item.item
               ?
                 <div>
-                  <div className="row flex-row justify-content-between p-3 pt-4">
+                  <div className="row flex-row justify-content-between p-3 pt-5">
                     <div className="col-12 col-md-8 col-xl-9 p-0">
-                      <div className="w-100 text-center text-md-left">
+                      <div className="w-100 text-center">
                         <img className="img-product" src={this.state.item.item.picture} alt="imagen producto"/>
                       </div>
                     </div>
@@ -102,7 +117,12 @@ class Product extends Component {
                         { this.state.item.item.title }
                       </p>
                       <div className="product-price d-block">
-                        <span className="mr-1">$</span>
+                        <span className="mr-1">
+                          { this.state.item.item.price.currency === 'USD'
+                            ? 'U$S'
+                            : '$'
+                          }
+                        </span>
                         <span>{ this.state.item.item.price.amount.toLocaleString('de-DE') }</span>
                         <span className="amount-decimals">
                           {
@@ -110,7 +130,7 @@ class Product extends Component {
                             ? '00'
                             : this.state.item.item.price.decimals
                           }
-                      </span>
+                        </span>
                       </div>
                       <span className="free-shipping-product d-block mb-3">
                         {
@@ -126,16 +146,15 @@ class Product extends Component {
                   </div>
                   <div className="row">
                     <div className="col-12 col-md-8 col-xl-9">
-                      <p className="description-title">Descripción del producto</p>
-                      <p>
-                        <small>
+                      <p className="description-title px-3 px-md-0 mt-0 mt-md-5">Descripción del producto</p>
+                      <p className="px-3 px-md-0">
                           { this.state.item.item.description }
-                        </small>
                       </p>
                     </div>
                   </div>
                 </div>
               :
+                //mensaje cuando no hay resultados
                 <NoResult></NoResult>
           }
         </article>

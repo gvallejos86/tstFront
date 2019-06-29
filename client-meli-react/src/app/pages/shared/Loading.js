@@ -9,8 +9,20 @@ class Loading extends Component {
 			<div>
         {
           <div className="pt-5 text-center">
-            <i className="fa fa-spinner" aria-hidden="true"></i>
-            <i>Buscando...</i>
+            <div className="lds-spinner">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
           </div>
         }
 			</div>
