@@ -60,13 +60,17 @@ class Product extends Component {
   //template a renderizar si hay items
   template() {
     return (
-      <div className="container mb-5">
+      <div className="container main-cont mb-5">
         <Helmet>
-          <meta name="description" content={this.state.item.item.title} />
+          {
+            this.state.item.item
+              ? <meta name="description" content={this.state.item.item.title} />
+              : null
+          }
         </Helmet>
         <div className="row">
           <nav aria-label="breadcrumb">
-            <ol className="breadcrumb mb-0">
+            <ol className="breadcrumb mb-0 justify-content-center">
               {
                 this.state.categories.categories
                   ?
@@ -147,7 +151,7 @@ class Product extends Component {
                   <div className="row">
                     <div className="col-12 col-md-8 col-xl-9">
                       <p className="description-title px-3 px-md-0 mt-0 mt-md-5">Descripción del producto</p>
-                      <p className="px-3 px-md-0">
+                      <p className="description-content px-3 px-md-0">
                           { this.state.item.item.description }
                       </p>
                     </div>

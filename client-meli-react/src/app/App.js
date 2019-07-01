@@ -14,6 +14,7 @@ class App extends Component {
           <Route exact path='/items/search' component={SearchResults}/>
           <Route exact path='/items/:id' component={Product}/>
         </Switch>
+        <footer className="px-2 d-flex align-items-center justify-content-center">Test práctico Frontend | 06-2019</footer>
       </div>
     )
     return (

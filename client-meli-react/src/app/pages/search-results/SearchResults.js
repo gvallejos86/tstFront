@@ -63,10 +63,10 @@ class SearchResults extends Component {
 
   template() {
     return (
-    <div className="container mb-5">
+    <div className="container mb-5 main-cont">
       <div className="row">
         <nav aria-label="breadcrumb">
-          <ol className="breadcrumb mb-0">
+          <ol className="breadcrumb mb-0 justify-content-center">
             {
               this.state.items.categories
                 ?
@@ -94,7 +94,7 @@ class SearchResults extends Component {
                         <Link to={{pathname: `/items/${current.id}`, state: { from: this.props.location.pathname }}}><img className="thumb-product" src={current.picture} alt="imagen producto"/></Link>
                       </div>
                       <div className="pl-md-3 pl-0 pr-0 pr-md-5 pt-3 text-center text-md-left flex-auto">
-                        <p className="mb-0 item-price">
+                        <div className="mb-4 item-price d-flex align-items-center justify-content-center justify-content-md-start">
                           <span className="mr-1">
                             { current.price.currency === 'USD'
                               ? 'U$S'
@@ -102,13 +102,15 @@ class SearchResults extends Component {
                             }
                           </span>
                           <span>{current.price.amount.toLocaleString('de-DE')}</span>
-                        </p>
+                          <small>
+                            {
+                              current.free_shipping
+                              ? <div className="alert alert-success alert alert-success d-inline-flex py-0 mt-0 mb-1 ml-2 px-0 rounded-circle justify-content-center align-items-center free-sheep-cont" role="alert"><small className="d-flex justify-content-center"><i className="fas fa-truck"></i></small></div>
+                              : null
+                            }
+                          </small>
+                        </div>
                         <p className="mb-0 mt-2 item-title"><Link to={{pathname: `/items/${current.id}`, state: { from: this.props.location.pathname }}}>{current.title}</Link></p>
-                        {
-                          current.free_shipping
-                          ? <div className="alert alert-success alert alert-success d-inline-flex py-0 mt-2" role="alert"><small><i className="fas fa-truck mr-2"></i>Envío gratis</small></div>
-                          : null
-                        }
                       </div>
                       <div className="pr-2 pr-lg-5 pt-lg-5 pl-2 pl-lg-0 text-center text-md-left">
                         <small className="result-condition">

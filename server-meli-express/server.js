@@ -15,10 +15,12 @@ const urlCategoria = 'https://api.mercadolibre.com/categories/';
 
 const urlSuggestions = 'https://http2.mlstatic.com/resources/sites/MLA/autosuggest?cacheBypassTimeStamp=1561553365036&showFilters=true&limit=6&api_version=2';
 
-const author = {name: "Gabriel",lastname:"Vallejos"};
+const author = { name: "Gabriel",lastname:"Vallejos" };
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+//soporte paa cors
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -91,7 +93,7 @@ function getSuggestions(query) {
 }
 
 
-// NOTE: ruta api search items
+// ruta api search items
 app.get('/api/items', function (req, res) {
   let q = req.query.q;
   let limit = req.query.limit ? req.query.limit : 0;
@@ -103,7 +105,7 @@ app.get('/api/items', function (req, res) {
   });
 });
 
-// NOTE: ruta api detalle de item
+// ruta api detalle de item
 app.get('/api/items/:id', function (req, res) {
   let id = req.params.id;
   itemWithDescription(id)
@@ -114,7 +116,7 @@ app.get('/api/items/:id', function (req, res) {
   });
 });
 
-// NOTE: ruta api categoria item
+// ruta api categoria item
 app.get('/api/categoria/:id', function (req, res) {
   let id = req.params.id;
   getCategoria(id)

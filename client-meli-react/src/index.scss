@@ -70,6 +70,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 .items-img-cont {
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
@@ -136,6 +137,40 @@ a:hover {
   flex: auto;
 }
 
+.nav-header {
+  -webkit-box-shadow: 0 1px 0 0 rgba(0,0,0,.1);
+  box-shadow: 0 1px 0 0 rgba(0,0,0,.1);
+}
+
+.free-sheep-cont {
+  height: 30px;
+  width: 30px;
+}
+
+/* Estilos contenedores principales */
+
+#root {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 60px;
+}
+
+.main-cont {
+  margin-top: 1px;
+}
+
+/* Estilos footer */
+footer {
+  height: 60px;
+  background-color: #fff;
+  color: $colorBreadcrumb;
+  border-top: 1px solid rgba(0,0,0,.1);
+  position:absolute;
+  left:0;
+  bottom:0;
+  right:0;
+}
+
 /* Estilos detalle de item */
 
 .img-product {
@@ -169,6 +204,10 @@ a:hover {
 .description-title {
   font-weight: 400;
   font-size: 24px;
+}
+
+.description-content {
+  word-wrap: break-word;
 }
 
 /* Spinner*/
