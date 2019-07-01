@@ -15,7 +15,7 @@ const urlCategoria = 'https://api.mercadolibre.com/categories/';
 
 const urlSuggestions = 'https://http2.mlstatic.com/resources/sites/MLA/autosuggest?cacheBypassTimeStamp=1561553365036&showFilters=true&limit=6&api_version=2';
 
-const author = { name: "Gabriel",lastname:"Vallejos" };
+const author = { name: "Gabriel", lastname:"Vallejos" };
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
