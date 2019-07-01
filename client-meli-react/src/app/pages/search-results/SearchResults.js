@@ -127,7 +127,7 @@ class SearchResults extends Component {
                 return null
               })
             :
-              <NoResult></NoResult>
+              <NoResult />
         }
       </article>
     </div>
@@ -137,7 +137,7 @@ class SearchResults extends Component {
   render() {
 		return (
 			<div>
-				{ this.state.showItems ? this.template() : <Loading></Loading> }
+				{ this.state.showItems ? this.template() : <Loading /> }
 			</div>
 		)
 	}

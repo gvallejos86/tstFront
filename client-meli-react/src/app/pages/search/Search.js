@@ -112,7 +112,7 @@ class Search extends Component {
               <div className="input-group-prepend" onClick={(ev)=>this.searchItems(ev)}>
                 <span className="input-group-text"><i className="fas fa-search"></i></span>
               </div>
-              { this.state.showSuggestionsResult ? <Suggestions words={this.state.suggestions}></Suggestions> : null}
+              { this.state.showSuggestionsResult ? <Suggestions words={this.state.suggestions} /> : null}
             </div>
           </form>
         </nav>

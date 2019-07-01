@@ -159,7 +159,7 @@ class Product extends Component {
                 </div>
               :
                 //mensaje cuando no hay resultados
-                <NoResult></NoResult>
+                <NoResult />
           }
         </article>
       </div>
@@ -169,7 +169,7 @@ class Product extends Component {
   render() {
 		return (
 			<div>
-				{ this.state.showProduct ? this.template() :  <Loading></Loading> }
+				{ this.state.showProduct ? this.template() :  <Loading /> }
 			</div>
 		)
 	}
