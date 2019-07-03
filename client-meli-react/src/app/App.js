@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+
+import { Provider } from 'react-redux'
+import configureStore from '../configureStore'
+
 import './App.scss';
 import Search from './pages/search/Search';
 import SearchResults from './pages/search-results/SearchResults';
 import Product from './pages/product/Product';
 
+const store = configureStore();
+
 class App extends Component {
   render() {
     const App = () => (
       <div>
-        <Search></Search>
+        <Search />
         <Switch>
           <Route exact path='/items/search' component={SearchResults}/>
           <Route exact path='/items/:id' component={Product}/>
@@ -18,9 +24,11 @@ class App extends Component {
       </div>
     )
     return (
-      <Switch>
-        <App/>
-      </Switch>
+      <Provider store={store}>
+        <Switch>
+          <App/>
+        </Switch>
+      </Provider>
     );
   }
 }

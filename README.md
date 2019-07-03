@@ -1,5 +1,5 @@
 # tstFront
-
+# Refactorizado con Redux
 **Dev servers**
 
 *Servidor:*

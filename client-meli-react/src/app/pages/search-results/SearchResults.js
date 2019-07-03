@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+import { getSearchResults, hideSearchResults } from '../../actions/actions';
+
 import NoResult from '../shared/NoResult';
 import Loading from '../shared/Loading';
 
@@ -8,14 +11,6 @@ class SearchResults extends Component {
   listenUrlChanges;
   //cantidad de resultados de busqueda a mostrar, lo limito al recorrer el resultado del endpoint y tambien al hacer la llamada a la api
   cantidadResultados = 4;
-
-  constructor (props){
-        super(props);
-        this.state = {  items : {},
-                        item: '',
-                        showItems: false
-                      };
-  }
 
   componentDidMount() {
     //buscar items en la primera carga del componente
@@ -47,17 +42,11 @@ class SearchResults extends Component {
 
   // obtengo items en base al valor de busqueda
   getItems = () => {
-    this.setState({ showItems : false });
+    //this.setState({ showItems : false });
+    this.props.hideSearchResults();
     let query = this.getUrlParameter('query');
     if (query) {
-      let queryItemsUrl = `http://localhost:4400/api/items?q=${query}&limit=${this.cantidadResultados}`;
-       fetch(queryItemsUrl, {
-         method: "GET",
-         headers: {
-           "Accept": "application/json"
-         },
-       }).then(response => { return response.json()})
-         .then(responseData => { this.setState({ items : responseData, showItems : true }) });
+      this.props.getSearchResults(query, this.cantidadResultados);
     }
   }
 
@@ -68,9 +57,9 @@ class SearchResults extends Component {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb mb-0 justify-content-center">
             {
-              this.state.items.categories
+              this.props.results.categories
                 ?
-                  this.state.items.categories.map((current, index, categories)=>{
+                  this.props.results.categories.map((current, index, categories)=>{
                     if (index === categories.length - 1) {
                       return <li key={index} className="breadcrumb-item active" aria-current="page">{current}</li>
                     }else {
@@ -84,9 +73,9 @@ class SearchResults extends Component {
       </div>
       <article className="container-fluid bg-items rounded">
         {
-          this.state.items.items
+          this.props.results.items
             ?
-              this.state.items.items.map((current, index)=>{
+              this.props.results.items.map((current, index)=>{
                 if (index < this.cantidadResultados) {
                   return ( <div className="row flex-row justify-content-between item-container p-2" key={index}>
                     <div className="d-flex flex-md-row flex-column w-100">
@@ -137,9 +126,21 @@ class SearchResults extends Component {
   render() {
 		return (
 			<div>
-				{ this.state.showItems ? this.template() : <Loading></Loading> }
+				{ this.props.showItems ? this.template() : <Loading></Loading> }
 			</div>
 		)
 	}
 }
-export default withRouter(SearchResults);
+
+//uno de los argumentos usados en el connect, para conectar el store de redux con el componente
+const mapStateToProps = (state) => {
+  return {
+    results: state.search.items,
+    showItems: state.search.showItems
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  { getSearchResults, hideSearchResults }
+) (withRouter(SearchResults));
